@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st 
 
 st.title('Aplikasi Data Produksi Minyak Dunia')
@@ -17,8 +18,8 @@ for negara in kode :
 pilih_negara = st.selectbox('Pilih Negara',daftar_negara)
 pilih_kode_negara = None
 for negara in kode :
-	if daftar_negara == negara ["name"] :
+	if pilih_negara == negara ["name"] :
 		pilih_kode_negara = negara ["alpha-3"]
 		break
 
-print(pilih_negara,pilih_kode_negara)
+st.write(pilih_negara,pilih_kode_negara)
