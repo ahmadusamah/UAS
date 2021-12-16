@@ -92,10 +92,7 @@ data4 = data4.sort_values(["produksi"], ascending=[0])
 
 right_col.subheader("Data Keseluruhan")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
-max_value = None
-max_index = None
-min_value = None
-min_index = None
+max_value, max_index, min_value, min_index, zero_value, zero_index = (None, )*5
 for index, value in data5.items():
 	if max_value is None or value > max_value :
 		max_value = value
@@ -103,6 +100,8 @@ for index, value in data5.items():
 	if min_value is None or value < min_value and value != 0 :
 		min_value = value
 		min_index = index
-		
+	if value == 0:
+		zero_value = value
+		zero_index = index
 st.write(max_value,max_index)
 st.write(min_value,min_index)
