@@ -89,7 +89,7 @@ right_col.pyplot(fig)'''
 #============Soal Keempat================
 right_col.subheader("Info")
 pilih_tahun_2 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
-pilih_besar_2 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25, 10)
+pilih_besar_2 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 26,value = 10)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_2]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 imax = data4["produksi"].idxmax()
