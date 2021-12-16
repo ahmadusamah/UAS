@@ -93,4 +93,4 @@ pilih_besar_2 = right_col.number_input("Banyak negara yang ingin ditampilkan:", 
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_2]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 imax = data4["produksi"].idxmax()
-right_col.write(imax)
+right_col.write(data[imax])
