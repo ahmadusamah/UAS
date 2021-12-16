@@ -20,7 +20,7 @@ for negara in kode :
 excluded = ['WLD','G20','OECD','OEU','EU28']
 oil_data = oil_data[~oil_data["kode_negara"].isin(excluded)]
 #============Soal Pertama================
-left_col.subheader("Data Minyak")
+left_col.header("Data Minyak")
 pilih_negara = left_col.selectbox('Pilih Negara',daftar_negara)
 pilih_kode_negara = None
 for negara in kode :
@@ -38,7 +38,7 @@ ax.bar(list_tahun, list_produksi)
 left_col.pyplot(fig)
 #============Soal Kedua================
 
-right_col.subheader("Produsen Minyak Terbesar")
+right_col.header("Produsen Minyak Terbesar")
 pilih_tahun = right_col.slider("Pilih tahun:", 1971, 2015, 2000)
 pilih_besar = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
@@ -63,13 +63,13 @@ ax.set_xticklabels(list_negara, rotation=90)
 right_col.pyplot(fig)
 
 #============Soal Ketiga================
-left_col.subheader("Jumlah Produksi Terbesar Secara Kumulatif")
+left_col.header("Jumlah Produksi Terbesar Secara Kumulatif")
 pilih_besar_2 = left_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 29,value = 10)
 data3 = oil_data.groupby("kode_negara")["produksi"].sum()
 
 data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar_2]
-left_col.write(data3)
+
 list_index = list()
 list_value = list()
 for index, value in data3.items():
@@ -84,10 +84,25 @@ ax.bar(list_index, list_value)
 ax.set_xticklabels(list_index, rotation=90)
 left_col.pyplot(fig)
 #============Soal Keempat================
-right_col.subheader("Info")
+right_col.header("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
 pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 26,value = 10)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
-st.write(data4.index)
-st.write(data4.columns)
+
+right_col.subheader("Data Keseluruhan")
+data5 = oil_data.groupby("kode_negara")["produksi"].sum()
+max_value = None
+max_index = None
+min_value = None
+min_index = None
+for index, value in data5.items():
+	if max_value is None or value > max_value :
+		max_value = value
+		max_index = index
+	if min_value is None or value < min_value and value != 0 :
+		min_value = value
+		min_index = index
+		
+st.write(max_value,max_index)
+st.write(min_value,min_index)
