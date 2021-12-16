@@ -113,7 +113,12 @@ for index, value in data5.items():
 				region.append(y["region"])
 				subregion.append(y["sub-region"])
 			
-st.write(max_value,max_index)
+for y in kode:
+	kode2 = y['alpha-3']
+	if max_index == kode2 :
+		st.write('Nama Negara',y['name'],'Kode Negara',y["country-code"],'Region',y["region"],'Sub-region',y["sub-region"])
+	if min_index == kode2 :
+		st.write('Nama Negara',y['name'],'Kode Negara',y["country-code"],'Region',y["region"],'Sub-region',y["sub-region"])
 st.write(min_value,min_index)
 tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 df = pd.DataFrame(data = tabel)
