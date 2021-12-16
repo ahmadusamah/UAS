@@ -6,6 +6,7 @@ import random
 
 st.set_page_config(layout="wide")
 st.title('Data Produksi Minyak Dunia')
+left_col, mid_col, right_col = st.columns(3)
 
 oil_data = pd.read_csv(r'produksi_minyak_mentah.csv')
 info_negara = open(r'kode_negara_lengkap.json')
