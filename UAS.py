@@ -64,7 +64,8 @@ ax.set_xticklabels(list_negara, rotation=90)
 right_col.pyplot(fig)
 
 #============Soal Ketiga================
-'''
+left_col.subheader("Jumlah Produksi Terbesar Secara Kumulatif")
+pilih_besar_2 = left_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 29,value = 10)
 for x in data3.index:
     kode1 = data3["kode_negara"][x]
     for y in kode:
@@ -73,24 +74,14 @@ for x in data3.index:
             data3["kode_negara"][x] = y['name']
 data3 = data3.groupby("kode_negara")["produksi"].sum()
 data3 = data3.sort_values(ascending=False)
-data3 = data3[:pilih_besar]
-right_col.subheader("Jumlah Total Produksi Minyak Terbesar")
-
-list_negara3 = list()
-list_produksi3 = list()
-for x in data3.index:
-	list_negara3.append(data3["kode_negara"][x])
-	list_produksi3.append(data3["produksi"][x])
-fig, ax = plt.subplots()
-ax.bar(list_negara3, list_produksi3)
-ax.set_xticklabels(list_negara3, rotation=90)
-right_col.pyplot(fig)'''
+data3 = data3[:pilih_besar_2]
+left_col.write(data3)
 
 #============Soal Keempat================
 right_col.subheader("Info")
-pilih_tahun_2 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
-pilih_besar_2 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 26,value = 10)
-data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_2]
+pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
+pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 26,value = 10)
+data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 imax = data4["produksi"].idxmax()
 right_col.write(data[imax])
