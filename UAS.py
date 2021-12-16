@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import streamlit as st 
 import random
 
+st.set_page_config(layout="wide")
 st.title('Data Produksi Minyak Dunia')
 
 oil_data = pd.read_csv(r'produksi_minyak_mentah.csv')
@@ -18,6 +19,7 @@ for negara in kode :
 warna = ("r","g","b","c","m","k")
 excluded = ['WLD','G20','OECD','OEU','EU28']
 #============Soal Pertama================
+mid_col.subheader("Data Minyak")
 pilih_negara = st.selectbox('Pilih Negara',daftar_negara)
 pilih_kode_negara = None
 for negara in kode :
@@ -32,7 +34,7 @@ for x in data.index:
 	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_tahun, list_produksi)
-right_col.pyplot(fig)
+mid_col.pyplot(fig)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
