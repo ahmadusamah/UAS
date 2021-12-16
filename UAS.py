@@ -91,9 +91,8 @@ right_col.subheader("Data produsen minyak")
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 data4 = data4[:pilih_besar_3]
-data4 = data4.groupby("kode_negara")
-for index, value in data4.items():
-	st.write(index,value)
+
+st.write(data4.groupby("kode_negara")["produksi"].max())
 
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
