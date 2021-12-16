@@ -28,8 +28,8 @@ data = oil_data.loc[oil_data["kode_negara"] == pilih_kode_negara]
 data["tahun"] = data["tahun"].astype(int) 
 data["produksi"] = data["produksi"].astype(int)     
 
-st.write(data)
-st.line_chart(data["produksi"])
+df = pd.DataFrame(data)
+st.line_chart(df)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
