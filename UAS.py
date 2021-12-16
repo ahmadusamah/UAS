@@ -125,4 +125,5 @@ def test(data):
 	tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 	df = pd.DataFrame(data = tabel)
 	st.dataframe(df)
+test(data4)
 test(data5)
