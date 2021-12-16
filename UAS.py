@@ -18,6 +18,7 @@ for negara in kode :
     print(negara["name"])
     daftar_negara.append(negara["name"])
 excluded = ['WLD','G20','OECD','OEU','EU28']
+oil_data = oil_data[~oil_data["kode_negara"].isin(excluded)]
 #============Soal Pertama================
 pilih_negara = st.selectbox('Pilih Negara',daftar_negara)
 left_col.subheader("Data Minyak")
@@ -42,7 +43,6 @@ pilih_besar = st.number_input("Banyak negara yang ingin ditampilkan:", min_value
 mid_col.subheader("Produsen Minyak Terbesar")
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
 data2 = data2.sort_values(["produksi"], ascending=[0])
-data2 = data2[~data2["kode_negara"].isin(excluded)]
 data2 = data2[:pilih_besar]
 
 for x in data2.index:
@@ -64,7 +64,7 @@ ax.set_xticklabels(list_negara, rotation=90)
 mid_col.pyplot(fig)
 
 #============Soal Ketiga================
-'''data3 = oil_data[~oil_data["kode_negara"].isin(excluded)]
+'''
 for x in data3.index:
     kode1 = data3["kode_negara"][x]
     for y in kode:
@@ -90,4 +90,5 @@ right_col.pyplot(fig)'''
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 mid_col.subheader("Info")
-print(data4)
+max_value = data4.max()
+st.write(max_value)
