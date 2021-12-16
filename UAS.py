@@ -71,7 +71,11 @@ data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar_2]
 left_col.write(data3)
 for index, value in data3.items():
-	st.write(index,value)
+	for y in kode:
+		kode2 = y['alpha-3']
+		if index == kode2 :
+ 			index = y['name']
+st.write(data3)
 #============Soal Keempat================
 right_col.subheader("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
