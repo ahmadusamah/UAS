@@ -20,8 +20,8 @@ for negara in kode :
 excluded = ['WLD','G20','OECD','OEU','EU28']
 oil_data = oil_data[~oil_data["kode_negara"].isin(excluded)]
 #============Soal Pertama================
-pilih_negara = st.selectbox('Pilih Negara',daftar_negara)
 left_col.subheader("Data Minyak")
+pilih_negara = left_col.selectbox('Pilih Negara',daftar_negara)
 pilih_kode_negara = None
 for negara in kode :
 	if pilih_negara == negara ["name"] :
@@ -90,4 +90,5 @@ right_col.pyplot(fig)'''
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 mid_col.subheader("Info")
-mid_col.write(data4[1])
+imax = data4["produksi"].idxmax()
+mid_col.write(data4[imax,imax+1])
