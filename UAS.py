@@ -36,4 +36,27 @@ plt.xlabel("Tahun Produksi")
 plt.ylabel("Jumlah Produksi")
 plt.show()
 
+#============Soal Kedua================
+
+pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
+pilih_besar = st.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
+data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
+data2 = data2.sort_values(["produksi"], ascending=[0])
+data2 = data2[~data2["kode_negara"].isin(excluded)]
+data2 = data2[:pilih_besar]
+
+for x in data2.index:
+    kode1 = data2["kode_negara"][x]
+    for y in kode:
+        kode2 = y['alpha-3']
+        if kode1 == kode2 :
+            data2["kode_negara"][x] = y['name']
+            
+data2.plot(kind="bar", x="kode_negara", y="produksi")
+plt.title(" Negara Produsen Minyak Terbesar pada Tahun ")
+plt.xlabel("Negara")
+plt.ylabel("Jumlah Produksi")
+plt.show()
+
+
 
