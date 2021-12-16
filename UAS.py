@@ -30,7 +30,7 @@ data["produksi"] = data["produksi"].astype(int)
 
 fig, ax = plt.subplots()
 ax.line = (data["tahun"], data["produksi"])
-data.pyplot(fig)
+
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
