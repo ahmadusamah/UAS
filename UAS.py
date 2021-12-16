@@ -115,7 +115,7 @@ for index, value in data5.items():
 			
 st.write(max_value,max_index)
 st.write(min_value,min_index)
-tabel = {'Nama Negara':[nama],'Kode Negara':[kodenegara],'Region':[region],'Sub-region':[subregion]}
+tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 df = pd.DataFrame(data = tabel)
 st.dataframe(df)
 
