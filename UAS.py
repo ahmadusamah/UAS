@@ -66,13 +66,13 @@ right_col.pyplot(fig)
 #============Soal Ketiga================
 left_col.subheader("Jumlah Produksi Terbesar Secara Kumulatif")
 pilih_besar_2 = left_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 29,value = 10)
+data3 = data3.groupby("kode_negara")["produksi"].sum()
 for x in data3.index:
     kode1 = data3["kode_negara"][x]
     for y in kode:
         kode2 = y['alpha-3']
         if kode1 == kode2 :
             data3["kode_negara"][x] = y['name']
-data3 = data3.groupby("kode_negara")["produksi"].sum()
 data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar_2]
 left_col.write(data3)
