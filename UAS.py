@@ -24,18 +24,11 @@ for negara in kode :
 	if pilih_negara == negara ["name"] :
 		pilih_kode_negara = negara ["alpha-3"]
 
-st.write(pilih_negara,pilih_kode_negara)
-
 data = oil_data.loc[oil_data["kode_negara"] == pilih_kode_negara]   
 data["tahun"] = data["tahun"].astype(int) 
 data["produksi"] = data["produksi"].astype(int)     
 
-data.plot(kind="line", x="tahun", y="produksi",c=random.choice(warna))
-plt.title("Produksi Minyak ")
-plt.xlabel("Tahun Produksi")
-plt.ylabel("Jumlah Produksi")
-plt.show()
-st.line_chart(data.plot)
+st.line_chart(data)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
