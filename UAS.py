@@ -40,6 +40,7 @@ mid_col.pyplot(fig)
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
 pilih_besar = st.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
+right_col.subheader("Produsen Minyak Terbesar")
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
 data2 = data2.sort_values(["produksi"], ascending=[0])
 data2 = data2[~data2["kode_negara"].isin(excluded)]
@@ -55,12 +56,9 @@ for x in data2.index:
 data2.plot(kind="bar", x="kode_negara", y="produksi")
 list_negara = list()
 list_produksi1 = list()
-for x in data.index:
+for x in data2.index:
 	list_negara.append(data2["kode_negara"][x])
 	list_produksi1.append(data2["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_negara, list_produksi1)
 right_col.pyplot(fig)
-
-
-
