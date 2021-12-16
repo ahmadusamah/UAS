@@ -52,7 +52,6 @@ for x in data2.index:
         if kode1 == kode2 :
             data2["kode_negara"][x] = y['name']
             
-data2.plot(kind="bar", x="kode_negara", y="produksi")
 list_negara = list()
 list_produksi1 = list()
 for x in data2.index:
@@ -66,7 +65,7 @@ right_col.pyplot(fig)
 #============Soal Ketiga================
 left_col.subheader("Jumlah Produksi Terbesar Secara Kumulatif")
 pilih_besar_2 = left_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 29,value = 10)
-data3 = data3.groupby("kode_negara")["produksi"].sum()
+data3 = oil_data.groupby("kode_negara")["produksi"].sum()
 for x in data3.index:
     kode1 = data3["kode_negara"][x]
     for y in kode:
