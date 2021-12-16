@@ -86,13 +86,11 @@ left_col.pyplot(fig)
 #============Soal Keempat================
 right_col.header("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
-pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 40,value = 5)
 right_col.subheader("Data produsen minyak")
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
-data4 = data4[:pilih_besar_3]
 
-st.write(data4.groupby("kode_negara")["produksi"].max())
+st.write(data4.groupby("kode_negara"))
 
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
