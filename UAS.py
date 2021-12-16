@@ -35,7 +35,7 @@ plt.title("Produksi Minyak ")
 plt.xlabel("Tahun Produksi")
 plt.ylabel("Jumlah Produksi")
 plt.show()
-
+st.line_chart(data)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
