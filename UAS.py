@@ -70,12 +70,19 @@ data3 = oil_data.groupby("kode_negara")["produksi"].sum()
 data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar_2]
 left_col.write(data3)
+list_index = list()
+list_value = list()
 for index, value in data3.items():
 	for y in kode:
 		kode2 = y['alpha-3']
 		if index == kode2 :
  			index = y['name']
-st.write(data3)
+			list_index.append(index)
+			list_value.append(value)
+fig, ax = plt.subplots()
+ax.bar(list_index, list_value)
+ax.set_xticklabels(list_index, rotation=90)
+left_col.pyplot(fig)
 #============Soal Keempat================
 right_col.subheader("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
