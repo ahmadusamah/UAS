@@ -95,35 +95,39 @@ st.write(data4.groupby("kode_negara"))
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 
-max_value, max_index, min_value, min_index = (None, )*4
-nama = list()
-kodenegara = list()
-region = list()
-subregion = list()
-for index, value in data5.items():
-	if max_value is None or value > max_value :
-		max_value = value
-		max_index = index
-	if min_value is None or value < min_value and value != 0 :
-		min_value = value
-		min_index = index
-	if value == 0:
-		for y in kode:
-			kode2 = y['alpha-3']
-			if index == kode2 :
-				nama.append(y['name'])
-				kodenegara.append(y["country-code"])
-				region.append(y["region"])
-				subregion.append(y["sub-region"])
+def test(data):
+	max_value, max_index, min_value, min_index = (None, )*4
+	nama = list()
+	kodenegara = list()
+	region = list()
+	subregion = list()
+	for index, value in data.items():
+		if max_value is None or value > max_value :
+			max_value = value
+			max_index = index
+		if min_value is None or value < min_value and value != 0 :
+			min_value = value
+			min_index = index
+		if value == 0:
+			for y in kode:
+				kode2 = y['alpha-3']
+				if index == kode2 :
+					nama.append(y['name'])
+					kodenegara.append(y["country-code"])
+					region.append(y["region"])
+					subregion.append(y["sub-region"])
 
-for y in kode:
-	kode2 = y['alpha-3']
-	if max_index == kode2 :
-		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
-	if min_index == kode2 :
-		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
+	for y in kode:
+		kode2 = y['alpha-3']
+		if max_index == kode2 :
+			st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
+		if min_index == kode2 :
+			st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
 
-tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
-df = pd.DataFrame(data = tabel)
-st.dataframe(df)
+	tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
+	df = pd.DataFrame(data = tabel)
+	st.dataframe(df)
+	
+test(data5)
+test(data4)
 
