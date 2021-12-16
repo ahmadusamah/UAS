@@ -90,5 +90,4 @@ right_col.pyplot(fig)'''
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 mid_col.subheader("Info")
-#max_value = data4.max()
-st.write(data4)
+st.write(data4.max())
