@@ -70,12 +70,12 @@ data3 = oil_data.groupby("kode_negara")["produksi"].sum()
 data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar_2]
 left_col.write(data3)
-
+st.write(data3.index)
 #============Soal Keempat================
 right_col.subheader("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
 pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 26,value = 10)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
-imax = data4["produksi"].idxmax()
-right_col.write(data[imax])
+st.write(data4.index)
+st.write(data4.columns)
