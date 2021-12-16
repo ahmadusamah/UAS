@@ -35,7 +35,7 @@ for x in data.index:
 	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_tahun, list_produksi)
-data.pyplot(fig)
+mid_col.pyplot(fig)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
