@@ -76,7 +76,7 @@ for index, value in data3.items():
 	for y in kode:
 		kode2 = y['alpha-3']
 		if index == kode2 :
- 			index = y['name']
+			index = y['name']
 			list_index.append(index)
 			list_value.append(value)
 fig, ax = plt.subplots()
