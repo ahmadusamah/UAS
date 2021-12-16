@@ -87,10 +87,11 @@ left_col.pyplot(fig)
 right_col.header("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
 pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 40,value = 5)
+right_col.subheader("Data tahun ",pilih_tahun_3)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 
-right_col.subheader("Data Keseluruhan")
+st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 max_value, max_index, min_value, min_index = (None, )*4
 nama = list()
@@ -116,9 +117,9 @@ for index, value in data5.items():
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index == kode2 :
-		st.write('Nama Negara',y['name'],'Kode Negara',y["country-code"],'Region',y["region"],'Sub-region',y["sub-region"])
+		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
 	if min_index == kode2 :
-		st.write('Nama Negara',y['name'],'Kode Negara',y["country-code"],'Region',y["region"],'Sub-region',y["sub-region"])
+		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
 st.write(min_value,min_index)
 tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 df = pd.DataFrame(data = tabel)
