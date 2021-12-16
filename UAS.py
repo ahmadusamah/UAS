@@ -61,4 +61,5 @@ for x in data2.index:
 	list_produksi1.append(data2["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_negara, list_produksi1)
+ax.set_xticklabels(list_negara, rotation=60)
 right_col.pyplot(fig)
