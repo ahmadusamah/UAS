@@ -53,10 +53,14 @@ for x in data2.index:
             data2["kode_negara"][x] = y['name']
             
 data2.plot(kind="bar", x="kode_negara", y="produksi")
-plt.title(" Negara Produsen Minyak Terbesar pada Tahun ")
-plt.xlabel("Negara")
-plt.ylabel("Jumlah Produksi")
-plt.show()
+list_negara = list()
+list_produksi1 = list()
+for x in data.index:
+	list_negara.append(data2["kode_negara"][x])
+	list_produksi1.append(data2["produksi"][x])
+fig, ax = plt.subplots()
+ax.bar(list_negara, list_produksi1)
+right_col.pyplot(fig)
 
 
 
