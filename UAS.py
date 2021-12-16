@@ -40,7 +40,7 @@ left_col.pyplot(fig)
 
 right_col.header("Produsen Minyak Terbesar")
 pilih_tahun = right_col.slider("Pilih tahun:", 1971, 2015, 2000)
-pilih_besar = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
+pilih_besar = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 40,value = 3)
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
 data2 = data2.sort_values(["produksi"], ascending=[0])
 data2 = data2[:pilih_besar]
@@ -64,7 +64,7 @@ right_col.pyplot(fig)
 
 #============Soal Ketiga================
 left_col.header("Jumlah Produksi Terbesar Secara Kumulatif")
-pilih_besar_2 = left_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 29,value = 10)
+pilih_besar_2 = left_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 40,value = 10)
 data3 = oil_data.groupby("kode_negara")["produksi"].sum()
 
 data3 = data3.sort_values(ascending=False)
@@ -86,13 +86,13 @@ left_col.pyplot(fig)
 #============Soal Keempat================
 right_col.header("Info")
 pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
-pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 26,value = 10)
+pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 40,value = 5)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 
 right_col.subheader("Data Keseluruhan")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
-max_value, max_index, min_value, min_index, zero_value, zero_index = (None, )*5
+max_value, max_index, min_value, min_index, zero_value, zero_index = (None, )*6
 for index, value in data5.items():
 	if max_value is None or value > max_value :
 		max_value = value
@@ -105,3 +105,4 @@ for index, value in data5.items():
 		zero_index = index
 st.write(max_value,max_index)
 st.write(min_value,min_index)
+st.write(zero_value,zero_index)
