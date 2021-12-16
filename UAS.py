@@ -31,7 +31,7 @@ for x in data.index:
 	list_tahun.append(data["tahun"][x])
 	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
-ax.line(list_tahun, list_produksi)
+ax.bar(list_tahun, list_produksi)
 right_col.pyplot(fig)
 #============Soal Kedua================
 
