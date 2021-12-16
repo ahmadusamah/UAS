@@ -24,11 +24,14 @@ for negara in kode :
 	if pilih_negara == negara ["name"] :
 		pilih_kode_negara = negara ["alpha-3"]
 
-data = oil_data.loc[oil_data["kode_negara"] == pilih_kode_negara]   
-data["tahun"] = data["tahun"].astype(int) 
-data["produksi"] = data["produksi"].astype(int)     
+data = oil_data.loc[oil_data["kode_negara"] == pilih_kode_negara]      
+list_tahun = list()
+list_produksi = list()
+for x in data.index:
+	list_tahun.append(data["tahun"][x])
+	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
-ax.line(data["tahun"], data["produksi"])
+ax.line(list_tahun, list_produksi)
 right_col.pyplot(fig)
 #============Soal Kedua================
 
