@@ -92,7 +92,11 @@ data4 = data4.sort_values(["produksi"], ascending=[0])
 
 right_col.subheader("Data Keseluruhan")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
-max_value, max_index, min_value, min_index, zero_value, zero_index = (None, )*6
+max_value, max_index, min_value, min_index = (None, )*4
+nama = list()
+kodenegara = list()
+region = list()
+subregion = list()
 for index, value in data5.items():
 	if max_value is None or value > max_value :
 		max_value = value
@@ -101,8 +105,17 @@ for index, value in data5.items():
 		min_value = value
 		min_index = index
 	if value == 0:
-		zero_value = value
-		zero_index = index
+		for y in kode:
+		kode2 = y['alpha-3']
+		if index == kode2 :
+			nama.append(y['name'])
+			kodenegara.append(y["country-code"])
+			region.append(y["region"])
+			subregion.append(y["sub-region"])
+			
 st.write(max_value,max_index)
 st.write(min_value,min_index)
-st.write(zero_value,zero_index)
+tabel = {'Nama Negara':[nama],'Kode Negara':[kodenegara],'Region':[region],'Sub-region':[subregion]}
+df = pd.DataFrame(data = tabel)
+st.dataframe(df)
+
