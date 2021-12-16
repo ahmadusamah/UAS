@@ -6,7 +6,7 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 st.title('Data Produksi Minyak Dunia')
-left_col, mid_col, right_col = st.columns(3)
+left_col,right_col = st.columns(2)
 
 oil_data = pd.read_csv(r'produksi_minyak_mentah.csv')
 info_negara = open(r'kode_negara_lengkap.json')
@@ -38,9 +38,9 @@ ax.bar(list_tahun, list_produksi)
 left_col.pyplot(fig)
 #============Soal Kedua================
 
-pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
-pilih_besar = st.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
-mid_col.subheader("Produsen Minyak Terbesar")
+right_col.subheader("Produsen Minyak Terbesar")
+pilih_tahun = right_col.slider("Pilih tahun:", 1971, 2015, 2000)
+pilih_besar = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
 data2 = data2.sort_values(["produksi"], ascending=[0])
 data2 = data2[:pilih_besar]
@@ -61,7 +61,7 @@ for x in data2.index:
 fig, ax = plt.subplots()
 ax.bar(list_negara, list_produksi1)
 ax.set_xticklabels(list_negara, rotation=90)
-mid_col.pyplot(fig)
+right_col.pyplot(fig)
 
 #============Soal Ketiga================
 '''
@@ -87,8 +87,10 @@ ax.set_xticklabels(list_negara3, rotation=90)
 right_col.pyplot(fig)'''
 
 #============Soal Keempat================
-data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun]
+right_col.subheader("Info")
+pilih_tahun_2 = right_col.slider("Pilih tahun:", 1971, 2015, 2000)
+pilih_besar_2 = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
+data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_2]
 data4 = data4.sort_values(["produksi"], ascending=[0])
-mid_col.subheader("Info")
 imax = data4["produksi"].idxmax()
-mid_col.write(data4[imax,imax+1])
+right_col.write(imax)
