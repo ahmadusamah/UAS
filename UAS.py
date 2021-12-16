@@ -20,8 +20,8 @@ for negara in kode :
 warna = ("r","g","b","c","m","k")
 excluded = ['WLD','G20','OECD','OEU','EU28']
 #============Soal Pertama================
-mid_col.subheader("Data Minyak")
 pilih_negara = st.selectbox('Pilih Negara',daftar_negara)
+mid_col.subheader("Data Minyak")
 pilih_kode_negara = None
 for negara in kode :
 	if pilih_negara == negara ["name"] :
@@ -35,7 +35,7 @@ for x in data.index:
 	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_tahun, list_produksi)
-mid_col.pyplot(fig)
+data.pyplot(fig)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
