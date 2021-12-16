@@ -106,12 +106,12 @@ for index, value in data5.items():
 		min_index = index
 	if value == 0:
 		for y in kode:
-		kode2 = y['alpha-3']
-		if index == kode2 :
-			nama.append(y['name'])
-			kodenegara.append(y["country-code"])
-			region.append(y["region"])
-			subregion.append(y["sub-region"])
+			kode2 = y['alpha-3']
+			if index == kode2 :
+				nama.append(y['name'])
+				kodenegara.append(y["country-code"])
+				region.append(y["region"])
+				subregion.append(y["sub-region"])
 			
 st.write(max_value,max_index)
 st.write(min_value,min_index)
