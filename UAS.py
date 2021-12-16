@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st 
-import random
+
 
 st.set_page_config(layout="wide")
 st.title('Data Produksi Minyak Dunia')
@@ -17,11 +17,10 @@ daftar_negara = list()
 for negara in kode :
     print(negara["name"])
     daftar_negara.append(negara["name"])
-warna = ("r","g","b","c","m","k")
 excluded = ['WLD','G20','OECD','OEU','EU28']
 #============Soal Pertama================
 pilih_negara = st.selectbox('Pilih Negara',daftar_negara)
-mid_col.subheader("Data Minyak")
+left_col.subheader("Data Minyak")
 pilih_kode_negara = None
 for negara in kode :
 	if pilih_negara == negara ["name"] :
@@ -35,12 +34,12 @@ for x in data.index:
 	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_tahun, list_produksi)
-mid_col.pyplot(fig)
+left_col.pyplot(fig)
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
 pilih_besar = st.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 25)
-right_col.subheader("Produsen Minyak Terbesar")
+mid_col.subheader("Produsen Minyak Terbesar")
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
 data2 = data2.sort_values(["produksi"], ascending=[0])
 data2 = data2[~data2["kode_negara"].isin(excluded)]
@@ -61,12 +60,21 @@ for x in data2.index:
 	list_produksi1.append(data2["produksi"][x])
 fig, ax = plt.subplots()
 ax.bar(list_negara, list_produksi1)
-ax.set_xticklabels(list_negara, rotation=60)
-right_col.pyplot(fig)
+ax.set_xticklabels(list_negara, rotation=90)
+mid_col.pyplot(fig)
 
 #============Soal Ketiga================
 data3 = oil_data[~oil_data["kode_negara"].isin(excluded)]
 data3 = data3.groupby("kode_negara")["produksi"].sum()
 data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar]
-st.write(data3)
+right_col.subheader("Jumlah Total Produksi Minyak Terbesar")
+list_negara3 = list()
+list_produksi3 = list()
+for x in data3.index:
+	list_negara3.append(data3["kode_negara"][x])
+	list_produksi3.append(data3["produksi"][x])
+fig, ax = plt.subplots()
+ax.bar(list_negara3, list_produksi3)
+ax.set_xticklabels(list_negara3, rotation=90)
+right_col.pyplot(fig)
