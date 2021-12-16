@@ -90,4 +90,4 @@ right_col.pyplot(fig)'''
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 mid_col.subheader("Info")
-mid_col.write(data4[0])
+mid_col.write(data4[1])
