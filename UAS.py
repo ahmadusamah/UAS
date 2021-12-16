@@ -28,9 +28,8 @@ data = oil_data.loc[oil_data["kode_negara"] == pilih_kode_negara]
 data["tahun"] = data["tahun"].astype(int) 
 data["produksi"] = data["produksi"].astype(int)     
 
-fig, ax = plt.subplots()
-ax.line = (data["tahun"], data["produksi"])
-
+st.write(data)
+st.line_chart(data["produksi"])
 #============Soal Kedua================
 
 pilih_tahun = st.slider("Pilih tahun:", 1971, 2015, 2000)
