@@ -31,7 +31,7 @@ data["tahun"] = data["tahun"].astype(int)
 data["produksi"] = data["produksi"].astype(int)     
 
 data.plot(kind="line", x="tahun", y="produksi",c=random.choice(warna))
-plt.title("Produksi Minyak ",pilih_negara)
+plt.title("Produksi Minyak ")
 plt.xlabel("Tahun Produksi")
 plt.ylabel("Jumlah Produksi")
 plt.show()
