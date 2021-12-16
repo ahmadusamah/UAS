@@ -90,6 +90,8 @@ pilih_besar_3 = right_col.number_input("Banyak negara yang ingin ditampilkan:", 
 right_col.subheader("Data produsen minyak")
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
+data4 = data4[:pilih_besar_3]
+data4 = data4.groupby("kode_negara")
 for index, value in data4.items():
 	st.write(index,value)
 
@@ -123,7 +125,7 @@ for y in kode:
 		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
 	if min_index == kode2 :
 		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
-st.write(min_value,min_index)
+
 tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 df = pd.DataFrame(data = tabel)
 st.dataframe(df)
