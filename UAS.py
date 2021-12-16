@@ -64,11 +64,18 @@ ax.set_xticklabels(list_negara, rotation=90)
 mid_col.pyplot(fig)
 
 #============Soal Ketiga================
-data3 = oil_data[~oil_data["kode_negara"].isin(excluded)]
+'''data3 = oil_data[~oil_data["kode_negara"].isin(excluded)]
+for x in data3.index:
+    kode1 = data3["kode_negara"][x]
+    for y in kode:
+        kode2 = y['alpha-3']
+        if kode1 == kode2 :
+            data3["kode_negara"][x] = y['name']
 data3 = data3.groupby("kode_negara")["produksi"].sum()
 data3 = data3.sort_values(ascending=False)
 data3 = data3[:pilih_besar]
 right_col.subheader("Jumlah Total Produksi Minyak Terbesar")
+
 list_negara3 = list()
 list_produksi3 = list()
 for x in data3.index:
@@ -77,4 +84,10 @@ for x in data3.index:
 fig, ax = plt.subplots()
 ax.bar(list_negara3, list_produksi3)
 ax.set_xticklabels(list_negara3, rotation=90)
-right_col.pyplot(fig)
+right_col.pyplot(fig)'''
+
+#============Soal Keempat================
+data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun]
+data4 = data4.sort_values(["produksi"], ascending=[0])
+mid_col.subheader("Info")
+print(data4)
