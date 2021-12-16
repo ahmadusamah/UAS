@@ -63,3 +63,10 @@ fig, ax = plt.subplots()
 ax.bar(list_negara, list_produksi1)
 ax.set_xticklabels(list_negara, rotation=60)
 right_col.pyplot(fig)
+
+#============Soal Ketiga================
+data3 = oil_data[~oil_data["kode_negara"].isin(excluded)]
+data3 = data3.groupby("kode_negara")["produksi"].sum()
+data3 = data3.sort_values(ascending=False)
+data3 = data3[:pilih_besar]
+st.write(data3)
