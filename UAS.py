@@ -89,14 +89,16 @@ def tulis(y):
 		st.write('Nama Negara :',y['name'])
 		st.write('Kode Negara :',y["country-code"])
 		st.write('Region :',y["region"])
-		st.write('Sub-region :',y["sub-region"])
-		st.write('Total Produksi :', max_value1)
-		
+		st.write('Sub-region :',y["sub-region"])	
+
+st.header("Informasi Terkait Data")
+pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
+tahun_dipilih = float(pilih_tahun_3)
 
 # Untuk data pertahun
-with st.expander("Data Produsen Minyak"):
+with st.expander("Data Produsen Minyak",tahun_dipilih):
+	
 	st.header("Data Produsen Minyak")
-	pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
 	data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 	data4 = data4.sort_values(["produksi"], ascending=[0])
 	data4 = data4.groupby("kode_negara")["produksi"].sum()
@@ -126,18 +128,20 @@ with st.expander("Data Produsen Minyak"):
 		if max_index1 == kode2 :
 			st.subheader("Negara dengan Produksi Terbesar")
 			tulis(y)
+			st.write('Total Produksi :', max_value1)
 		if min_index1 == kode2 :
 			st.subheader("Negara dengan Produksi Terkecil")
 			tulis(y)
+			st.write('Total Produksi :', min_value1)
 
-	st.subheader("Tabel Negara dengan 0 Produksi Minyak")		
+	st.subheader("Negara dengan 0 Produksi Minyak")		
 	tabel1 = {'Nama Negara':nama1,'Kode Negara':kodenegara1,'Region':region1,'Sub-region':subregion1}
 	df1 = pd.DataFrame(data = tabel1)
 	st.dataframe(df1)
 
 # Untuk data kumulatif
 with st.expander("Data Produsen Minyak Sepanjang 1971-2015"):
-	st.subheader("Data Kumulatif")
+	st.header("Data Kumulatif")
 	data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 
 	max_value, max_index, min_value, min_index = (None, )*4
@@ -166,9 +170,11 @@ with st.expander("Data Produsen Minyak Sepanjang 1971-2015"):
 		if max_index == kode2 :
 			st.subheader("Negara dengan Produksi Terbesar Sepanjang 1971-2015")
 			tulis(y)
+			st.write('Total Produksi :', max_value1)
 		if min_index == kode2 :
 			st.subheader("Negara dengan Produksi Terkecil Sepanjang 1971-2015")
 			tulis(y)
+			st.write('Total Produksi :', min_value1)
 
 	st.subheader("Tabel Negara dengan Total 0 Produksi Minyak Sepanjang 1971-2015")
 	tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
