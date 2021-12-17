@@ -96,7 +96,7 @@ pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
 
 # Untuk data pertahun
 with st.expander("Data Produsen Minyak pada Tahun Tertentu"):
-	st.header("Data Produsen Minyak",(pilih_tahun_3))
+	st.header("Data Produsen Minyak", str(pilih_tahun_3))
 	data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 	data4 = data4.sort_values(["produksi"], ascending=[0])
 	data4 = data4.groupby("kode_negara")["produksi"].sum()
