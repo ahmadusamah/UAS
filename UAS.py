@@ -15,7 +15,6 @@ kode = json.load(info_negara)
 #============Daftar Negara================
 daftar_negara = list()
 for negara in kode :
-    print(negara["name"])
     daftar_negara.append(negara["name"])
 excluded = ['WLD','G20','OECD','OEU','EU28']
 oil_data = oil_data[~oil_data["kode_negara"].isin(excluded)]
@@ -89,7 +88,7 @@ pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
 right_col.subheader("Data produsen minyak")
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
-st.write(data4.groupby("kode_negara"))
+st.write(data4.groupby("kode_negara")["produksi"].sum())
 
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
