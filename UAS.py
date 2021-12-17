@@ -107,10 +107,10 @@ for index, value in data4.items():
 		for y in kode:
 			kode2 = y['alpha-3']
 			if index == kode2 :
-				nama.append(y['name'])
-				kodenegara.append(y["country-code"])
-				region.append(y["region"])
-				subregion.append(y["sub-region"])		
+				nama1.append(y['name'])
+				kodenegara1.append(y["country-code"])
+				region1.append(y["region"])
+				subregion1.append(y["sub-region"])						
 		
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
@@ -131,10 +131,10 @@ for index, value in data5.items():
 		for y in kode:
 			kode2 = y['alpha-3']
 			if index == kode2 :
-				nama1.append(y['name'])
-				kodenegara1.append(y["country-code"])
-				region1.append(y["region"])
-				subregion1.append(y["sub-region"])
+				nama.append(y['name'])
+				kodenegara.append(y["country-code"])
+				region.append(y["region"])
+				subregion.append(y["sub-region"])
 
 for y in kode:
 	kode2 = y['alpha-3']
