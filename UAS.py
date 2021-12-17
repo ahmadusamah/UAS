@@ -20,7 +20,7 @@ excluded = ['WLD','G20','OECD','OEU','EU28']
 oil_data = oil_data[~oil_data["kode_negara"].isin(excluded)]
 warna = ("r","g","b","c","m","k")
 #============Soal Pertama================
-left_col.header("Data Minyak")
+left_col.header("Data Minyak per Negara")
 pilih_negara = left_col.selectbox('Pilih Negara',daftar_negara)
 pilih_kode_negara = None
 for negara in kode :
@@ -38,7 +38,7 @@ ax.bar(list_tahun, list_produksi, color=random.choice(warna))
 left_col.pyplot(fig)
 #============Soal Kedua================
 
-right_col.header("Produsen Minyak Terbesar")
+right_col.header("Daftar Produsen Minyak Terbesar")
 pilih_tahun = right_col.slider("Pilih tahun:", 1971, 2015, 2000)
 pilih_besar = right_col.number_input("Banyak negara yang ingin ditampilkan:", min_value = 1, max_value = 40,value = 3)
 data2 = oil_data.loc[oil_data["tahun"] == pilih_tahun ]
@@ -96,9 +96,8 @@ pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
 tahun_dipilih = float(pilih_tahun_3)
 
 # Untuk data pertahun
-with st.expander("Data Produsen Minyak",tahun_dipilih):
-	
-	st.header("Data Produsen Minyak")
+with st.expander("Data Produsen Minyak pada Tahun Tertentu"):
+	st.header("Data Produsen Minyak",tahun_dipilih)
 	data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 	data4 = data4.sort_values(["produksi"], ascending=[0])
 	data4 = data4.groupby("kode_negara")["produksi"].sum()
