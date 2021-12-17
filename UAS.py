@@ -84,9 +84,11 @@ ax.bar(list_index, list_value, color=warna)
 ax.set_xticklabels(list_index, rotation=90)
 left_col.pyplot(fig)
 #============Soal Keempat================
-right_col.header("Info")
-pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
-right_col.subheader("Data produsen minyak")
+st.header("Info")
+
+# Untuk data pertahun
+left_col.subheader("Data produsen minyak")
+pilih_tahun_3 = left_col.slider("Pilih tahun:", 1971, 2015, 2001)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 data4 = data4.groupby("kode_negara")["produksi"].sum()
@@ -111,6 +113,7 @@ for index, value in data4.items():
 				kodenegara1.append(y["country-code"])
 				region1.append(y["region"])
 				subregion1.append(y["sub-region"])
+st.write(max_index1, min_index1)
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index1 == kode2 :
@@ -121,8 +124,9 @@ for y in kode:
 tabel1 = {'Nama Negara':nama1,'Kode Negara':kodenegara1,'Region':region1,'Sub-region':subregion1}
 df1 = pd.DataFrame(data = tabel1)
 st.dataframe(df1)
-		
-st.subheader("Data Kumulatif")
+
+# Untuk data kumulatif
+right_col.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 
 max_value, max_index, min_value, min_index = (None, )*4
@@ -149,13 +153,13 @@ for index, value in data5.items():
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index == kode2 :
-		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
+		right_col.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
 	if min_index == kode2 :
-		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
+		right_col.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
 
 tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 df = pd.DataFrame(data = tabel)
-st.dataframe(df)
+right_col.dataframe(df)
 
 
 
