@@ -92,7 +92,7 @@ def tulis(y):
 		st.write('Sub-region :',y["sub-region"])	
 
 st.header("Informasi Terkait Data")
-pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
+pilih_tahun_3 = st.slider("pada tahun:", 1971, 2015, 2001)
 
 # Untuk data pertahun
 with st.expander("Data Produsen Minyak pada Tahun Tertentu"):
