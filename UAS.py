@@ -116,9 +116,13 @@ st.write(max_index1, min_index1)
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index1 == kode2 :
-		st.text('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\n','Total Produksi :', max_value1)
+		st.write('Nama Negara :',y['name'])
+		st.write('Kode Negara :',y["country-code"])
+		st.write('Region :',y["region"])
+		st.write('Sub-region :',y["sub-region"])
+		st.write('Total Produksi :', max_value1)
 	if min_index1 == kode2 :
-		st.text('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\n','Total Produksi :', min_value1)
+		st.write('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\n','Total Produksi :', min_value1)
 
 st.write("Tabel Negara dengan 0 Produksi Minyak")		
 tabel1 = {'Nama Negara':nama1,'Kode Negara':kodenegara1,'Region':region1,'Sub-region':subregion1}
