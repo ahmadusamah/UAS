@@ -110,7 +110,17 @@ for index, value in data4.items():
 				nama1.append(y['name'])
 				kodenegara1.append(y["country-code"])
 				region1.append(y["region"])
-				subregion1.append(y["sub-region"])						
+				subregion1.append(y["sub-region"])
+for y in kode:
+	kode2 = y['alpha-3']
+	if max_index1 == kode2 :
+		st.write('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\n','Total Produksi :',max_value1)
+	if min_index1 == kode2 :
+		st.write('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\nTotal Produksi :',min_value1)
+
+tabel1 = {'Nama Negara':nama1,'Kode Negara':kodenegara1,'Region':region1,'Sub-region':subregion1}
+df1 = pd.DataFrame(data = tabel1)
+st.dataframe(df1)
 		
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
