@@ -83,8 +83,15 @@ fig, ax = plt.subplots()
 ax.bar(list_index, list_value, color=warna)
 ax.set_xticklabels(list_index, rotation=90)
 left_col.pyplot(fig)
+
 #============Soal Keempat================
 st.header("Info")
+def tulis(y):
+		st.write('Nama Negara :',y['name'])
+		st.write('Kode Negara :',y["country-code"])
+		st.write('Region :',y["region"])
+		st.write('Sub-region :',y["sub-region"])
+		st.write('Total Produksi :', max_value1)
 
 # Untuk data pertahun
 st.subheader("Data produsen minyak")
@@ -116,11 +123,8 @@ st.write(max_index1, min_index1)
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index1 == kode2 :
-		st.write('Nama Negara :',y['name'])
-		st.write('Kode Negara :',y["country-code"])
-		st.write('Region :',y["region"])
-		st.write('Sub-region :',y["sub-region"])
-		st.write('Total Produksi :', max_value1)
+		st.subheader("Negara dengan produksi terbesar pada", pilih_tahun_3)
+		tulis(y)
 	if min_index1 == kode2 :
 		st.write('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\n','Total Produksi :', min_value1)
 
