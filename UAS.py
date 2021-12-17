@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st 
-
+import random
 
 st.set_page_config(layout="wide")
 st.title('Data Produksi Minyak Dunia')
@@ -18,6 +18,7 @@ for negara in kode :
     daftar_negara.append(negara["name"])
 excluded = ['WLD','G20','OECD','OEU','EU28']
 oil_data = oil_data[~oil_data["kode_negara"].isin(excluded)]
+warna = ("r","g","b","c","m","k")
 #============Soal Pertama================
 left_col.header("Data Minyak")
 pilih_negara = left_col.selectbox('Pilih Negara',daftar_negara)
@@ -33,7 +34,7 @@ for x in data.index:
 	list_tahun.append(data["tahun"][x])
 	list_produksi.append(data["produksi"][x])
 fig, ax = plt.subplots()
-ax.bar(list_tahun, list_produksi)
+ax.bar(list_tahun, list_produksi, color=random.choice(warna))
 left_col.pyplot(fig)
 #============Soal Kedua================
 
