@@ -85,17 +85,17 @@ ax.set_xticklabels(list_index, rotation=90)
 left_col.pyplot(fig)
 
 #============Soal Keempat================
-st.header("Info")
 def tulis(y):
 		st.write('Nama Negara :',y['name'])
 		st.write('Kode Negara :',y["country-code"])
 		st.write('Region :',y["region"])
 		st.write('Sub-region :',y["sub-region"])
 		st.write('Total Produksi :', max_value1)
-
+		
+with st.expander("Data Produsen Minyak"):
 # Untuk data pertahun
-st.subheader("Data produsen minyak")
-pilih_tahun_3 = left_col.slider("Pilih tahun:", 1971, 2015, 2001)
+st.header("Data Produsen Minyak")
+pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
 data4 = data4.groupby("kode_negara")["produksi"].sum()
@@ -119,21 +119,23 @@ for index, value in data4.items():
 				kodenegara1.append(y["country-code"])
 				region1.append(y["region"])
 				subregion1.append(y["sub-region"])
-st.write(max_index1, min_index1)
+
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index1 == kode2 :
-		st.subheader("Negara dengan produksi terbesar pada", pilih_tahun_3)
+		st.subheader("Negara dengan Produksi Terbesar")
 		tulis(y)
 	if min_index1 == kode2 :
-		st.write('Nama Negara :',y['name'],'\n','Kode Negara :',y["country-code"],'\n','Region :',y["region"],'\n','Sub-region :',y["sub-region"],'\n','Total Produksi :', min_value1)
+		st.subheader("Negara dengan Produksi Terkecil")
+		tulis(y)
 
-st.write("Tabel Negara dengan 0 Produksi Minyak")		
+st.subheader("Tabel Negara dengan 0 Produksi Minyak")		
 tabel1 = {'Nama Negara':nama1,'Kode Negara':kodenegara1,'Region':region1,'Sub-region':subregion1}
 df1 = pd.DataFrame(data = tabel1)
 st.dataframe(df1)
 
 # Untuk data kumulatif
+with st.expander("Data Produsen Minyak Sepanjang 1971-2015"):
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 
@@ -161,11 +163,13 @@ for index, value in data5.items():
 for y in kode:
 	kode2 = y['alpha-3']
 	if max_index == kode2 :
-		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',max_value)
+		st.subheader("Negara dengan Produksi Terbesar Sepanjang 1971-2015")
+		tulis(y)
 	if min_index == kode2 :
-		st.write('Nama Negara :',y['name'],'\nKode Negara :',y["country-code"],'\nRegion :',y["region"],'\nSub-region :',y["sub-region"],'\nTotal Produksi :',min_value)
+		st.subheader("Negara dengan Produksi Terkecil Sepanjang 1971-2015")
+		tulis(y)
 
-st.write("Tabel Negara dengan Total 0 Produksi Minyak")
+st.subheader("Tabel Negara dengan Total 0 Produksi Minyak Sepanjang 1971-2015")
 tabel = {'Nama Negara':nama,'Kode Negara':kodenegara,'Region':region,'Sub-region':subregion}
 df = pd.DataFrame(data = tabel)
 st.dataframe(df)
