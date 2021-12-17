@@ -93,11 +93,13 @@ def tulis(y):
 
 st.header("Informasi Terkait Data")
 pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
-tahun_dipilih = float(pilih_tahun_3)
+tahun_dipilih = str(pilih_tahun_3)
 
 # Untuk data pertahun
 with st.expander("Data Produsen Minyak pada Tahun Tertentu"):
-	st.header("Data Produsen Minyak",tahun_dipilih)
+	st.header("Data Produsen Minyak")
+	st.header(tahun_dipilih)
+	st.header(pilih_tahun_3)
 	data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 	data4 = data4.sort_values(["produksi"], ascending=[0])
 	data4 = data4.groupby("kode_negara")["produksi"].sum()
