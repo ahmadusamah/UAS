@@ -92,9 +92,10 @@ def tulis(y):
 		st.write('Sub-region :',y["sub-region"])
 		st.write('Total Produksi :', max_value1)
 		
-with st.expander("Data Produsen Minyak"):
+
 # Untuk data pertahun
 st.header("Data Produsen Minyak")
+with st.expander("Data Produsen Minyak"):
 pilih_tahun_3 = left_col.slider("pada tahun:", 1971, 2015, 2001)
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
