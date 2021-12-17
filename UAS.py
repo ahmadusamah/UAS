@@ -103,7 +103,14 @@ for index, value in data4.items():
 	if min_value1 is None or value < min_value1 and value != 0 :
 		min_value1 = value
 		min_index1 = index
-		
+	if value == 0:
+		for y in kode:
+			kode2 = y['alpha-3']
+			if index == kode2 :
+				nama.append(y['name'])
+				kodenegara.append(y["country-code"])
+				region.append(y["region"])
+				subregion.append(y["sub-region"])		
 		
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
