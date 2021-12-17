@@ -95,6 +95,7 @@ st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 
 def test(data5):
+	data5["produksi"] = data5["produksi"].astype(int) 
 	max_value, max_index, min_value, min_index = (None, )*4
 	nama = list()
 	kodenegara = list()
@@ -107,7 +108,7 @@ def test(data5):
 		if min_value is None or value < min_value and value != 0 :
 			min_value = value
 			min_index = index
-		if value <= 0:
+		if value == 0:
 			for y in kode:
 				kode2 = y['alpha-3']
 				if index == kode2 :
