@@ -58,7 +58,7 @@ for x in data2.index:
 	list_negara.append(data2["kode_negara"][x])
 	list_produksi1.append(data2["produksi"][x])
 fig, ax = plt.subplots()
-ax.bar(list_negara, list_produksi1,  color=warna)
+ax.bar(list_negara, list_produksi1, color=warna)
 ax.set_xticklabels(list_negara, rotation=90)
 right_col.pyplot(fig)
 
@@ -80,7 +80,7 @@ for index, value in data3.items():
 			list_index.append(index)
 			list_value.append(value)
 fig, ax = plt.subplots()
-ax.bar(list_index, list_value)
+ax.bar(list_index, list_value, color=warna)
 ax.set_xticklabels(list_index, rotation=90)
 left_col.pyplot(fig)
 #============Soal Keempat================
@@ -107,7 +107,7 @@ def test(data5):
 		if min_value is None or value < min_value and value != 0 :
 			min_value = value
 			min_index = index
-		if value == 0:
+		if value <= 0:
 			for y in kode:
 				kode2 = y['alpha-3']
 				if index == kode2 :
