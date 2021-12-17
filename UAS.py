@@ -89,10 +89,22 @@ pilih_tahun_3 = right_col.slider("Pilih tahun:", 1971, 2015, 2001)
 right_col.subheader("Data produsen minyak")
 data4 = oil_data.loc[oil_data["tahun"] == pilih_tahun_3]
 data4 = data4.sort_values(["produksi"], ascending=[0])
-data4 = data4.groupby("kode_negara")["produksi"].sum())
+data4 = data4.groupby("kode_negara")["produksi"].sum()
+max_value1, max_index1, min_value1, min_index1 = (None, )*4
+nama1 = list()
+kodenegara1 = list()
+region1 = list()
+subregion1 = list()
 for index, value in data4.items():
-	st.write(index,value
-
+	st.write(index,value)
+	if max_value1 is None or value > max_value1 :
+		max_value1 = value
+		max_index1 = index
+	if min_value1 is None or value < min_value1 and value != 0 :
+		min_value1 = value
+		min_index1 = index
+		
+		
 st.subheader("Data Kumulatif")
 data5 = oil_data.groupby("kode_negara")["produksi"].sum()
 
